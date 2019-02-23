@@ -57,11 +57,15 @@ tu-berlin.de 16076.11km 0.053587033ms
 Reasons
 The phisycal wire couldn't be placed at the shortest path. The light or signal in the transfer 
 medium won't neccessary as fast as light.
-The Delay is the sum of {process,queue,transfer,proprogation} dalay, no only the proprogation 
+The Delay is the sum of {processing,queueing,transmission,propagation} dalay, no only the proprogation 
 dalay, and all of the other dalay couldn't be 0
 
 2. 
-It vary over time, because there's a different waiting time when the package go through a same router each time. 
-So the sum of all the queueing dalay is vary from time to time.
+It vary over time, because there's a different waiting time (queueing delay) when the package go 
+through a same router each time. So the sum of all the queueing dalay is vary from time to time.
 
 3.
+Depend on the package size: transmission delay
+May depend on the package size: processing, if the processing is all base on software and has not 
+accleration from hardware
+Not depend on package size: {queueing, propagation} dalay
