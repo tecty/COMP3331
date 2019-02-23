@@ -54,6 +54,12 @@ uq.edu.au      732.13km 0.002440433ms
 nus.edu.sg    6309.72km 0.0210324ms 
 tu-berlin.de 16076.11km 0.053587033ms
 
+Reasons
+The phisycal wire couldn't be placed at the shortest path. The light or signal in the transfer 
+medium won't neccessary as fast as light.
+The Delay is the sum of {process,queue,transfer,proprogation} dalay, no only the proprogation 
+dalay, and all of the other dalay couldn't be 0
+
 2. 
 It vary over time, because there's a different waiting time when the package go through a same router each time. 
 So the sum of all the queueing dalay is vary from time to time.
