@@ -23,9 +23,7 @@ Ex3.
 1. 
 20 routers. 
 0 routers. 
-3rd and 4th router 
- 3  49.255.42.221 (49.255.42.221)  5.812 ms  6.023 ms  6.209 ms
- 4  BE-100.cor02.syd04.nsw.VOCUS.net.au (114.31.192.50)  156.761 ms  156.771 ms  156.765 ms
+
 
 2.
 Diverage at 49.255.42.221
@@ -34,8 +32,7 @@ Or Diverage from a router group? BE-100.cor02.syd04.nsw.VOCUS.net.au
 49.255.42.221 is belong to VOCUS PTY LTD
 BE-100.cor02.syd04.nsw.VOCUS.net.au is belong to Vocus Communications Ltd
 Both is belong to vocus Communications which is a ISP for small ISP, in my point of view. 
-There business is target to datacenter, ISP, etc. And they have national wide optical caples 
-and cable go aboard.
+There business is target to datacenter, ISP, etc. And they have national wide optical caples and cable go aboard.
 
 I couldn't find out the geological location about both network
 
