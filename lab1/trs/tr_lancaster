@@ -1,0 +1,21 @@
+traceroute to www.lancaster.ac.uk (148.88.65.80), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1)  0.630 ms  0.840 ms  1.051 ms
+ 2  103.210.24.1 (103.210.24.1)  4.937 ms  4.957 ms  4.969 ms
+ 3  49.255.42.221 (49.255.42.221)  5.779 ms  6.138 ms  6.162 ms
+ 4  BE-100.cor02.syd04.nsw.VOCUS.net.au (114.31.192.50)  155.987 ms  156.567 ms  156.581 ms
+ 5  bundle-200.cor01.sjc01.ca.vocus.net (49.255.255.10)  160.943 ms  161.393 ms  157.164 ms
+ 6  bundle-100.bdr01.sjc01.ca.vocus.net (49.255.255.19)  153.625 ms  154.165 ms  144.666 ms
+ 7  sjo-b21-link.telia.net (62.115.166.80)  159.666 ms  160.763 ms  150.057 ms
+ 8  nyk-bb4-link.telia.net (62.115.119.228)  298.267 ms  294.310 ms nyk-bb3-link.telia.net (213.155.130.128)  298.204 ms
+ 9  ldn-bb4-link.telia.net (62.115.112.245)  289.011 ms ldn-bb4-link.telia.net (62.115.136.184)  289.107 ms ldn-bb4-link.telia.net (62.115.112.245)  296.745 ms
+10  ldn-b5-link.telia.net (213.155.132.197)  292.959 ms  292.972 ms  289.082 ms
+11  jisc-ic-318436-ldn-b5.c.telia.net (62.115.148.161)  293.923 ms  294.113 ms  294.009 ms
+12  ae24.londtt-sbr1.ja.net (146.97.35.193)  287.537 ms  297.401 ms  296.980 ms
+13  ae27.erdiss-sbr2.ja.net (146.97.33.14)  282.594 ms  282.654 ms  285.266 ms
+14  ae29.manckh-sbr2.ja.net (146.97.33.42)  296.639 ms  299.598 ms  300.140 ms
+15  ae24.lanclu-rbr1.ja.net (146.97.38.58)  321.093 ms  321.225 ms  321.228 ms
+16  lancaster-university.ja.net (194.81.46.2)  315.278 ms  325.824 ms  315.290 ms
+17  * * *
+18  ismx-issrx.rtr.lancs.ac.uk (148.88.255.17)  301.196 ms  293.995 ms  289.020 ms
+19  dc.iss.srv.rtrcloud.lancs.ac.uk (148.88.253.3)  315.986 ms  315.783 ms  315.851 ms
+20  www.lancs.ac.uk (148.88.65.80)  303.534 ms !X  303.562 ms !X  295.318 ms !X

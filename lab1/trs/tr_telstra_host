@@ -1,0 +1,12 @@
+traceroute to www.telstra.net (203.50.5.178), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1)  0.707 ms  0.873 ms  1.049 ms
+ 2  103.210.24.1 (103.210.24.1)  4.706 ms  4.786 ms  4.785 ms
+ 3  49.255.42.221 (49.255.42.221)  5.932 ms  6.254 ms *
+ 4  BE-100.cor02.syd04.nsw.VOCUS.net.au (114.31.192.50)  5.950 ms  6.422 ms  6.501 ms
+ 5  bundle-101.bdr01.syd11.nsw.vocus.net.au (114.31.192.83)  6.584 ms bundle-100.bdr01.syd11.nsw.vocus.net.au (114.31.192.81)  7.061 ms bundle-101.bdr01.syd11.nsw.vocus.net.au (114.31.192.83)  7.179 ms
+ 6  * Bundle-Ether12.ken-edge903.sydney.telstra.net (203.27.185.57)  3.375 ms  4.200 ms
+ 7  * * bundle-ether2.chw-edge903.sydney.telstra.net (203.50.11.175)  4.926 ms
+ 8  bundle-ether17.chw-core10.sydney.telstra.net (203.50.11.176)  6.747 ms  6.742 ms bundle-ether10.win-core10.melbourne.telstra.net (203.50.11.123)  18.385 ms
+ 9  203.50.6.40 (203.50.6.40)  18.019 ms  18.258 ms  18.275 ms
+10  bundle-ether2.exi-ncprouter101.melbourne.telstra.net (203.50.11.209)  18.291 ms  18.260 ms  18.291 ms
+11  www.telstra.net (203.50.5.178)  19.511 ms  15.467 ms *

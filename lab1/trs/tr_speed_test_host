@@ -1,0 +1,10 @@
+traceroute to www.speedtest.com.sg (202.150.221.170), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1)  0.712 ms  0.816 ms  0.972 ms
+ 2  103.210.24.1 (103.210.24.1)  4.639 ms  4.678 ms  4.659 ms
+ 3  49.255.42.221 (49.255.42.221)  5.401 ms  5.633 ms  5.616 ms
+ 4  BE-100.cor02.syd04.nsw.VOCUS.net.au (114.31.192.50)  166.575 ms BE-100.cor01.syd11.nsw.VOCUS.net.au (114.31.192.48)  142.451 ms BE-100.cor02.syd04.nsw.VOCUS.net.au (114.31.192.50)  167.483 ms
+ 5  Te-1-0-0.bdr01.hkg01.hkg.VOCUS.net (119.161.84.30)  142.712 ms  142.722 ms  142.621 ms
+ 6  38001.hkg.equinix.com (119.27.63.60)  144.096 ms *  116.454 ms
+ 7  * * *
+ 8  * * *
+ 9  202-150-221-170.rev.ne.com.sg (202.150.221.170)  151.893 ms  127.408 ms *
