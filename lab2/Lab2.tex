@@ -39,7 +39,70 @@ There's 7 cookies setted by google.
 \end{tabular}
 
 \subsection{Question 3}
-None. None site set cookies, Yes, it's consistence.
+None. None site set cookies, Yes, it's consistence. 
+
+\section{Exercise 3}
+
+\subsection{Question 1}
+
+code: 200, phrase: ok 
+
+\subsection{Question 2}
+
+Last modified: Tue, 23 Sep 2003 05:29:00 GMT
+
+Yes, it contains the DATE field. The date field is when this http message generated or sent. While the Last-Modified is help the cache to grape or update the cache to reduce the network traffic.
+
+\subsection{Question 3}
+
+Yes, it's persistent. By "Connection: Keep-Alive"
+
+\subsection{Question 4}
+
+I think it should be - TCP payload (385 bytes), because the browser's js can reach what's the status code of the reuqest. So the browser can received the whole http Headers.
+
+\subsection{Question 5}
+
+\begin{lstlisting}
+    <html>\n
+    Congratulations.  You've downloaded the file lab2-1.html!\n
+    </html>\n
+\end{lstlisting}
+
+\section{Exercise 4}
+
+\subsection{Question 1}
+
+Nope.
+
+\subsection{Question 2}
+
+No, it said it's not modified.
+
+\subsection{Question 3}
+
+Yes.
+\begin{lstlisting}
+    If-Modified-Since: Tue, 23 Sep 2003 05:35:00 GMT\r\n
+    If-None-Match: "1bfef-173-8f4ae900"\r\n
+\end{lstlisting}
+
+\subsection{Question 4}
+
+code: 304, phrase: Not Modified
+No the server didn't return the cotent of the file, since the local client has the cache of the content and it not been changed since previous request. It's not neccessary to transfer the content again to waste the content. 
+
+\subsection{Question 5}
+
+Both are:
+\begin{lstlisting}
+    ETag: "1bfef-173-8f4ae900"\r\n
+\end{lstlisting}
+
+Etage act as a version for that URL. It's use as a version of the url, so if the content of the url is been changed, then the url will have a different ETag. 
+
+The value hasn't been changed since the first reponse.
+
 
 \end{document}
 
