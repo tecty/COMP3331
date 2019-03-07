@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.time.Instant;
 import java.util.*;
 
 /*
@@ -14,8 +15,8 @@ public class PingClient {
 
    public static void main(String[] args) throws Exception {
       // Get command line argument.
-      if (args.length != 1) {
-         System.out.println("Required arguments: port");
+      if (args.length != 2) {
+         System.out.println("Required arguments: host port");
          return;
       }
       // port we want to send
@@ -25,14 +26,18 @@ public class PingClient {
 
       // Create a datagram socket for receiving and sending UDP packets
       // through the port specified on the command line.
-      DatagramSocket socket = new DatagramSocket(port, hostAddr);
+      DatagramSocket socket = new DatagramSocket();
 
       // set the timeout to 1 sec
       socket.setSoTimeout(1000);
 
-      for (int i = 0; i < 10; i++) {
+      for (int i = 1; i <= 10; i++) {
+         Instant ins = Instant.now();
+         long sentTimestamp = ins.getNano();
+         String str = "PING " + i + " " + sentTimestamp + "\r\n";
+
          // Create a datagram packet to hold incomming UDP packet.
-         DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
+         DatagramPacket request = new DatagramPacket(str.getBytes(), str.length(), hostAddr, port);
          // sent the packet
          socket.send(request);
 
@@ -42,6 +47,8 @@ public class PingClient {
             DatagramPacket response = new DatagramPacket(new byte[1024], 1024);
             socket.receive(response);
 
+            // this is the print string for output
+            // String str = "ping to "+args[0] + ", seq = "+ i + ", rtt=";
          } catch (SocketTimeoutException e) {
             // TODO: Hello
             System.out.println("lost this packages");
