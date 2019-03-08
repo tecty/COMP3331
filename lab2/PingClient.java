@@ -31,30 +31,50 @@ public class PingClient {
       // set the timeout to 1 sec
       socket.setSoTimeout(1000);
 
-      for (int i = 1; i <= 10; i++) {
-         Instant ins = Instant.now();
-         long sentTimestamp = ins.getNano();
-         String str = "PING " + i + " " + sentTimestamp + "\r\n";
+      // initial the list of rtt
+      ArrayList<Long> rtt_l = new ArrayList<>();
+
+      for (int i = 0; i < 10; i++) {
+         long start = System.currentTimeMillis();
+         String str = "PING " + i + " " + start + "\r\n";
 
          // Create a datagram packet to hold incomming UDP packet.
          DatagramPacket request = new DatagramPacket(str.getBytes(), str.length(), hostAddr, port);
          // sent the packet
          socket.send(request);
 
+         str = "ping to " + args[0] + ", seq = " + i + ", ";
          // not sure it will be received
          // Create a datagram packet to hold incomming UDP packet.
          try {
             DatagramPacket response = new DatagramPacket(new byte[1024], 1024);
             socket.receive(response);
 
+            // receive the package
+            long end = System.currentTimeMillis();
+
+            // calculate the rtt and push into list
+            long rtt = end - start;
+            rtt_l.add(rtt);
+
+            System.out.println(str + "rtt = " + (rtt) + " ms");
+
             // this is the print string for output
-            // String str = "ping to "+args[0] + ", seq = "+ i + ", rtt=";
          } catch (SocketTimeoutException e) {
-            // TODO: Hello
-            System.out.println("lost this packages");
+            System.out.println(str + "time out");
          }
 
       }
+
+      rtt_l.sort(new Comparator<Long>() {
+         @Override
+         public int compare(Long a, Long b) {
+            return a > b ? 1 : -1;
+         }
+      });
+
+      System.out.println("min = " + rtt_l.get(0) + " ms, max = " + rtt_l.get(rtt_l.size() - 1) + " ms, package lost: "
+            + (10 - rtt_l.size()) * 10 + "%");
 
       socket.close();
 
