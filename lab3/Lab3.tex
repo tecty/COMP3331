@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm} 
+\usepackage{amsfonts} 
+\usepackage{pdfpages}
+\usepackage{listings}
+\lstset{breaklines} 
+
+\begin{document}
+
+\title{COMP3331 Lab2}
+\author{Ruofei HUANG}
+
+\maketitle
+
+\section{Exercise 1}
+Not included.
+
+\section{Exercise 2}
+Not included.
+
+\section{Exercise 3}
+
+\subsection{Question 1}
+
+Type A, 150.203.161.98
+
+\begin{lstlisting}
+> dig www.cecs.anu.edu.au
+
+; <<>> DiG 9.11.3-1ubuntu1.5-Ubuntu <<>> www.cecs.anu.edu.au
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32963
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.cecs.anu.edu.au.		IN	A
+
+;; ANSWER SECTION:
+www.cecs.anu.edu.au.	3600	IN	CNAME	rproxy.cecs.anu.edu.au.
+rproxy.cecs.anu.edu.au.	3599	IN	A	150.203.161.98
+
+;; Query time: 45 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Mon Mar 11 23:28:15 AEDT 2019
+;; MSG SIZE  rcvd: 85
+\end{lstlisting}
+
+\subsection{Question 2}
+
+rproxy.cecs.anu.edu.au
+
+Customize a web address for it's web server.
+
+\subsection{Question 3}
+
+I's not the authority answer, there's an additional answer, which is 
+
+\begin{lstlisting}
+rproxy.cecs.anu.edu.au.	3599	IN	A	150.203.161.98
+\end{lstlisting}
+
+\subsection{Question 4}
+
+127.0.0.53
+
+
+
+\end{document}
