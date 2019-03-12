@@ -51,9 +51,9 @@ rproxy.cecs.anu.edu.au.	3599	IN	A	150.203.161.98
 
 \subsection{Question 2}
 
-rproxy.cecs.anu.edu.au
-
+rproxy.cecs.anu.edu.au \\
 Customize a web address for it's web server.
+\\ By using the query from question 1.
 
 \subsection{Question 3}
 
@@ -62,11 +62,408 @@ I's not the authority answer, there's an additional answer, which is
 \begin{lstlisting}
 rproxy.cecs.anu.edu.au.	3599	IN	A	150.203.161.98
 \end{lstlisting}
+ 
+By using the query from question 1.
 
 \subsection{Question 4}
 
-127.0.0.53
+127.0.0.53 \\ 
+By using the query from question 1.
+
+\subsection{Question 5}
+
+They are 
+
+\begin{lstlisting}
+ns4.cecs.anu.edu.au.
+ns2.cecs.anu.edu.au.
+ns3.cecs.anu.edu.au.
+\end{lstlisting}
+
+By using "NS" type of request.
+
+\begin{lstlisting}
+> dig cecs.anu.edu.au -t NS    
+
+; <<>> DiG 9.11.3-1ubuntu1.5-Ubuntu <<>> cecs.anu.edu.au -t NS
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59210
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;cecs.anu.edu.au.		IN	NS
+
+;; ANSWER SECTION:
+cecs.anu.edu.au.	3600	IN	NS	ns4.cecs.anu.edu.au.
+cecs.anu.edu.au.	3600	IN	NS	ns2.cecs.anu.edu.au.
+cecs.anu.edu.au.	3600	IN	NS	ns3.cecs.anu.edu.au.
+
+;; Query time: 45 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Wed Mar 13 01:01:37 AEDT 2019
+;; MSG SIZE  rcvd: 98
+
+\end{lstlisting}
+
+\subsection{Question 6}
+
+maestro.orchestra.cse.unsw.EDU.AU. \\
+The dns query type is PTR\\\\
+
+\begin{lstlisting}
+> dig -x 129.94.242.33       
+
+; <<>> DiG 9.11.3-1ubuntu1.5-Ubuntu <<>> -x 129.94.242.33
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5634
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;33.242.94.129.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+33.242.94.129.in-addr.arpa. 86314 IN	PTR	maestro.orchestra.cse.unsw.EDU.AU.
+
+;; Query time: 3 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Wed Mar 13 01:12:05 AEDT 2019
+;; MSG SIZE  rcvd: 102
 
 
+\end{lstlisting}
+\subsection{Question 7}
+
+No, because the flags doesn't contain "aa", which means "Authoritative Answer"
+
+\begin{lstlisting}
+> dig @129.94.242.33 yahoo.com -t MX
+
+; <<>> DiG 9.7.3 <<>> @129.94.242.33 yahoo.com -t MX
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54091
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 5, ADDITIONAL: 8
+
+;; QUESTION SECTION:
+;yahoo.com.			IN	MX
+
+;; ANSWER SECTION:
+yahoo.com.		1800	IN	MX	1 mta6.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta7.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta5.am0.yahoodns.net.
+
+;; AUTHORITY SECTION:
+yahoo.com.		32069	IN	NS	ns5.yahoo.com.
+yahoo.com.		32069	IN	NS	ns1.yahoo.com.
+yahoo.com.		32069	IN	NS	ns3.yahoo.com.
+yahoo.com.		32069	IN	NS	ns2.yahoo.com.
+yahoo.com.		32069	IN	NS	ns4.yahoo.com.
+
+;; ADDITIONAL SECTION:
+ns1.yahoo.com.		584033	IN	A	68.180.131.16
+ns1.yahoo.com.		65633	IN	AAAA	2001:4998:130::1001
+ns2.yahoo.com.		593922	IN	A	68.142.255.16
+ns2.yahoo.com.		32164	IN	AAAA	2001:4998:140::1002
+ns3.yahoo.com.		204178	IN	A	203.84.221.53
+ns3.yahoo.com.		53443	IN	AAAA	2406:8600:b8:fe03::1003
+ns4.yahoo.com.		422534	IN	A	98.138.11.157
+ns5.yahoo.com.		486849	IN	A	119.160.253.83
+
+;; Query time: 153 msec
+;; SERVER: 129.94.242.33#53(129.94.242.33)
+;; WHEN: Wed Mar 13 01:19:25 2019
+;; MSG SIZE  rcvd: 360
+
+\end{lstlisting}
+
+\subsection{Question 8}
+
+\begin{lstlisting}
+> dig @ns5.yahoo.com yahoo.com -t MX
+
+; <<>> DiG 9.7.3 <<>> @ns5.yahoo.com yahoo.com -t MX
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34911
+;; flags: qr aa rd; QUERY: 1, ANSWER: 3, AUTHORITY: 5, ADDITIONAL: 8
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;yahoo.com.			IN	MX
+
+;; ANSWER SECTION:
+yahoo.com.		1800	IN	MX	1 mta7.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta6.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta5.am0.yahoodns.net.
+
+;; AUTHORITY SECTION:
+yahoo.com.		172800	IN	NS	ns1.yahoo.com.
+yahoo.com.		172800	IN	NS	ns4.yahoo.com.
+yahoo.com.		172800	IN	NS	ns2.yahoo.com.
+yahoo.com.		172800	IN	NS	ns5.yahoo.com.
+yahoo.com.		172800	IN	NS	ns3.yahoo.com.
+
+;; ADDITIONAL SECTION:
+ns1.yahoo.com.		1209600	IN	A	68.180.131.16
+ns2.yahoo.com.		1209600	IN	A	68.142.255.16
+ns3.yahoo.com.		1209600	IN	A	203.84.221.53
+ns4.yahoo.com.		1209600	IN	A	98.138.11.157
+ns5.yahoo.com.		1209600	IN	A	119.160.253.83
+ns1.yahoo.com.		86400	IN	AAAA	2001:4998:130::1001
+ns2.yahoo.com.		86400	IN	AAAA	2001:4998:140::1002
+ns3.yahoo.com.		86400	IN	AAAA	2406:8600:b8:fe03::1003
+
+;; Query time: 161 msec
+;; SERVER: 119.160.253.83#53(119.160.253.83)
+;; WHEN: Wed Mar 13 01:21:57 2019
+;; MSG SIZE  rcvd: 360
+
+\end{lstlisting}
+
+\subsection{Question 9}
+
+The query type is "MX"
+
+\begin{lstlisting}
+;; ANSWER SECTION:
+yahoo.com.		1800	IN	MX	1 mta7.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta6.am0.yahoodns.net.
+yahoo.com.		1800	IN	MX	1 mta5.am0.yahoodns.net.
+\end{lstlisting}
+
+\subsection{Question 10}
+
+129.94.242.53\\
+We must query 6 servers.
+
+\begin{lstlisting}
+> dig . -t NS 
+
+; <<>> DiG 9.7.3 <<>> . -t NS
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51589
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 13
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			194447	IN	NS	a.root-servers.net.
+.			194447	IN	NS	l.root-servers.net.
+.			194447	IN	NS	e.root-servers.net.
+.			194447	IN	NS	c.root-servers.net.
+.			194447	IN	NS	b.root-servers.net.
+.			194447	IN	NS	m.root-servers.net.
+.			194447	IN	NS	d.root-servers.net.
+.			194447	IN	NS	g.root-servers.net.
+.			194447	IN	NS	j.root-servers.net.
+.			194447	IN	NS	i.root-servers.net.
+.			194447	IN	NS	h.root-servers.net.
+.			194447	IN	NS	f.root-servers.net.
+.			194447	IN	NS	k.root-servers.net.
+
+;; ADDITIONAL SECTION:
+a.root-servers.net.	462985	IN	A	198.41.0.4
+a.root-servers.net.	26371	IN	AAAA	2001:503:ba3e::2:30
+b.root-servers.net.	490128	IN	A	199.9.14.201
+b.root-servers.net.	490129	IN	AAAA	2001:500:200::b
+c.root-servers.net.	387946	IN	A	192.33.4.12
+c.root-servers.net.	386544	IN	AAAA	2001:500:2::c
+d.root-servers.net.	354472	IN	A	199.7.91.13
+d.root-servers.net.	28110	IN	AAAA	2001:500:2d::d
+e.root-servers.net.	28110	IN	A	192.203.230.10
+e.root-servers.net.	276452	IN	AAAA	2001:500:a8::e
+f.root-servers.net.	465357	IN	A	192.5.5.241
+f.root-servers.net.	28110	IN	AAAA	2001:500:2f::f
+g.root-servers.net.	473444	IN	A	192.112.36.4
+
+;; Query time: 1 msec
+;; SERVER: 129.94.242.2#53(129.94.242.2)
+;; WHEN: Wed Mar 13 01:37:32 2019
+;; MSG SIZE  rcvd: 508
+
+
+> dig @198.41.0.4 au. -t NS
+
+; <<>> DiG 9.7.3 <<>> @198.41.0.4 au. -t NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20920
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 10, ADDITIONAL: 16
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;au.				IN	NS
+
+;; AUTHORITY SECTION:
+au.			172800	IN	NS	a.au.
+au.			172800	IN	NS	b.au.
+au.			172800	IN	NS	c.au.
+au.			172800	IN	NS	d.au.
+au.			172800	IN	NS	q.au.
+au.			172800	IN	NS	r.au.
+au.			172800	IN	NS	s.au.
+au.			172800	IN	NS	t.au.
+au.			172800	IN	NS	u.au.
+au.			172800	IN	NS	v.au.
+
+;; ADDITIONAL SECTION:
+a.au.			172800	IN	A	58.65.254.73
+b.au.			172800	IN	A	58.65.253.73
+c.au.			172800	IN	A	162.159.24.179
+d.au.			172800	IN	A	162.159.25.38
+q.au.			172800	IN	A	65.22.196.1
+r.au.			172800	IN	A	65.22.197.1
+s.au.			172800	IN	A	65.22.198.1
+t.au.			172800	IN	A	65.22.199.1
+u.au.			172800	IN	A	211.29.133.32
+v.au.			172800	IN	A	202.12.31.53
+a.au.			172800	IN	AAAA	2407:6e00:254:306::73
+b.au.			172800	IN	AAAA	2407:6e00:253:306::73
+c.au.			172800	IN	AAAA	2400:cb00:2049:1::a29f:18b3
+d.au.			172800	IN	AAAA	2400:cb00:2049:1::a29f:1926
+q.au.			172800	IN	AAAA	2a01:8840:be::1
+r.au.			172800	IN	AAAA	2a01:8840:bf::1
+
+;; Query time: 161 msec
+;; SERVER: 198.41.0.4#53(198.41.0.4)
+;; WHEN: Wed Mar 13 01:39:52 2019
+;; MSG SIZE  rcvd: 508
+
+> dig @58.65.254.73 edu.au. -t NS 
+
+; <<>> DiG 9.7.3 <<>> @58.65.254.73 edu.au. -t NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64719
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 8
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;edu.au.				IN	NS
+
+;; AUTHORITY SECTION:
+edu.au.			86400	IN	NS	t.au.
+edu.au.			86400	IN	NS	q.au.
+edu.au.			86400	IN	NS	s.au.
+edu.au.			86400	IN	NS	r.au.
+
+;; ADDITIONAL SECTION:
+q.au.			86400	IN	A	65.22.196.1
+r.au.			86400	IN	A	65.22.197.1
+s.au.			86400	IN	A	65.22.198.1
+t.au.			86400	IN	A	65.22.199.1
+q.au.			86400	IN	AAAA	2a01:8840:be::1
+r.au.			86400	IN	AAAA	2a01:8840:bf::1
+s.au.			86400	IN	AAAA	2a01:8840:c0::1
+t.au.			86400	IN	AAAA	2a01:8840:c1::1
+
+;; Query time: 154 msec
+;; SERVER: 58.65.254.73#53(58.65.254.73)
+;; WHEN: Wed Mar 13 01:40:59 2019
+;; MSG SIZE  rcvd: 264
+
+> dig @65.22.196.1 unsw.edu.au. -t NS
+
+; <<>> DiG 9.7.3 <<>> @65.22.196.1 unsw.edu.au. -t NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62951
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 3, ADDITIONAL: 5
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;unsw.edu.au.			IN	NS
+
+;; AUTHORITY SECTION:
+unsw.edu.au.		900	IN	NS	ns3.unsw.edu.au.
+unsw.edu.au.		900	IN	NS	ns1.unsw.edu.au.
+unsw.edu.au.		900	IN	NS	ns2.unsw.edu.au.
+
+;; ADDITIONAL SECTION:
+ns1.unsw.edu.au.	900	IN	A	129.94.0.192
+ns2.unsw.edu.au.	900	IN	A	129.94.0.193
+ns3.unsw.edu.au.	900	IN	A	192.155.82.178
+ns1.unsw.edu.au.	900	IN	AAAA	2001:388:c:35::1
+ns2.unsw.edu.au.	900	IN	AAAA	2001:388:c:35::2
+
+;; Query time: 8 msec
+;; SERVER: 65.22.196.1#53(65.22.196.1)
+;; WHEN: Wed Mar 13 01:42:03 2019
+;; MSG SIZE  rcvd: 187
+
+> dig @129.94.0.192 cse.unsw.edu.au. -t NS
+
+; <<>> DiG 9.7.3 <<>> @129.94.0.192 cse.unsw.edu.au. -t NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11611
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 2, ADDITIONAL: 4
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;cse.unsw.edu.au.		IN	NS
+
+;; AUTHORITY SECTION:
+cse.unsw.edu.au.	10800	IN	NS	maestro.orchestra.cse.unsw.edu.au.
+cse.unsw.edu.au.	10800	IN	NS	beethoven.orchestra.cse.unsw.edu.au.
+
+;; ADDITIONAL SECTION:
+beethoven.orchestra.cse.unsw.edu.au. 10800 IN A	129.94.172.11
+beethoven.orchestra.cse.unsw.edu.au. 10800 IN A	129.94.208.3
+beethoven.orchestra.cse.unsw.edu.au. 10800 IN A	129.94.242.2
+maestro.orchestra.cse.unsw.edu.au. 10800 IN A	129.94.242.33
+
+;; Query time: 4 msec
+;; SERVER: 129.94.0.192#53(129.94.0.192)
+;; WHEN: Wed Mar 13 01:42:31 2019
+;; MSG SIZE  rcvd: 153
+
+> dig @129.94.172.11 weber.cse.unsw.edu.au. -t A 
+
+; <<>> DiG 9.7.3 <<>> @129.94.172.11 weber.cse.unsw.edu.au. -t A
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54792
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;weber.cse.unsw.edu.au.		IN	A
+
+;; ANSWER SECTION:
+weber.cse.unsw.edu.au.	3600	IN	A	129.94.242.53
+
+;; AUTHORITY SECTION:
+cse.unsw.edu.au.	3600	IN	NS	beethoven.orchestra.cse.unsw.edu.au.
+cse.unsw.edu.au.	3600	IN	NS	maestro.orchestra.cse.unsw.edu.au.
+
+;; ADDITIONAL SECTION:
+maestro.orchestra.cse.unsw.edu.au. 3600	IN A	129.94.242.33
+beethoven.orchestra.cse.unsw.edu.au. 3600 IN A	129.94.242.2
+
+;; Query time: 0 msec
+;; SERVER: 129.94.172.11#53(129.94.172.11)
+;; WHEN: Wed Mar 13 01:44:55 2019
+;; MSG SIZE  rcvd: 143
+
+\end{lstlisting}
+
+\subsection{Question 11}
+
+Yes. We can use multiple NIC at a signle machine or orther more fancier method.
 
 \end{document}
