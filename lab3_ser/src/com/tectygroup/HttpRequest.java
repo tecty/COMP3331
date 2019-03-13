@@ -11,14 +11,19 @@ public class HttpRequest {
     private BufferedReader in;
 
 
-    private enum METHOD  {GET, POST};
+    public enum METHOD  {GET, POST};
     private METHOD method;
+    private String uri;
     private HashMap<String, String> headers;
 
 
     public HttpRequest(InputStream in) {
+        // initial the header hash map
+        headers = new HashMap<>();
+
         this.in = new BufferedReader(new InputStreamReader(in));
         this.parse();
+//        this.printHeaders();
     }
 
     public METHOD getMethod() {
@@ -34,16 +39,44 @@ public class HttpRequest {
     }
 
     public void setHeaders(String str) {
-        Pattern p = Pattern.compile('^(\w+?): (\w+)$');
-        Matcher m = p.matcher(str);
+//        System.out.println(str);
+        String[] words = str.split(":",2);
+        if (words.length == 2){
+            headers.put(words[0], words[1]);
+        }
+    }
+    
+    public void printHeaders(){
+        System.out.println("Headers");
+        for (String key :
+                headers.keySet()) {
+            System.out.println(key + " : "+ headers.get(key));
+        }
+    }
 
-        this.headers.put(m.group(1),m.group(2));
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        if (uri.equals("/")){
+//            change it do index page
+            uri = "/index.html";
+        }
+
+        // remove the first slash from uri
+        this.uri = uri.substring(1);
+        //System.out.println(this.uri);
     }
 
     private void parse(){
         try {
+            String[] request_info  = in.readLine().split(" ");
 
-            // read all the headers' key value pair 
+            if (request_info[0].equals("GET") ){
+                this.method= METHOD.GET;
+            }
+            this.setUri(request_info[1]);
             while (in.ready()){
                 setHeaders(in.readLine());
             }
