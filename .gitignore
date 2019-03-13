@@ -311,3 +311,8 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
+
+# Java ignore
+
+*.class
+.vscode/*
