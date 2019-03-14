@@ -1,11 +1,9 @@
 package com.tectygroup;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class HttpResponse {
     public  enum STATUS {
@@ -25,9 +23,9 @@ public class HttpResponse {
         // init the header map
         headers = new HashMap<>();
         // dummy headers
-        headers.put("Content-Type", "text/html; charset=utf-8");
+//        headers.put("Content-Type", "text/html; charset=utf-8");
         headers.put("Connection", "Keep-Alive");
-
+        headers.put("Content-Language", "en-US");
 
     }
     public String getStatusStr(){
@@ -40,54 +38,55 @@ public class HttpResponse {
         return "HTTP/1.1 200 OK\r\n";
     }
 
-//    public String getHeaderStr(){
-//        String ret = "";
-//        for (String key :
-//                headers.keySet()) {
-//            ret += key +": "+ headers.get(key)+"\r\n";
-//        }
-//        return ret;
-//    }
+    public String headerMapToString(){
+        String ret = "";
+        for (String key :
+                headers.keySet()) {
+            ret += key +": "+ headers.get(key)+"\r\n";
+        }
+        return ret;
+    }
 
     public String getHeader(){
         return getStatusStr() +
-                "Content-Type: text/html; charset=utf-8\r\n" +
-                "Content-Length: "+headers.get("Content-Length")+"\r\n" +
-                "Connection: keep-alive\r\n" +
-                "Content-Language: en-US\r\n" +
+                headerMapToString()+
                 "\r\n" ;
     }
 
     public void response(){
-        BufferedReader fin = null;
-        // we only support 8k for this version
-        String str = "";
+        FileInputStream fin = null;
+        File file = Paths.get(uri).toFile();
+
 
         try {
-            fin =new BufferedReader(
-                    new FileReader(
-                            Paths.get(uri).toFile()
-                    )
+            fin =new FileInputStream(file);
+            headers.put(
+                "Content-Type",
+                Files.probeContentType(file.toPath())
             );
-            String st;
-            while ((st= fin.readLine())!= null){
-                str += st;
-            }
 
             headers.put(
                 "Content-Length",
-                Integer.toString(str.length())
+                Long.toString(file.length())
             );
         }catch (Exception e){
             this.status = STATUS.NOT_FOUND;
         }
 
-
-        str = getHeader() + str;
-
         try {
+            out.write(getHeader().getBytes());
 
-            out.write(str.getBytes());
+            byte[] buff = new byte[8196];
+            if (fin != null){
+                int size ;
+                while ((size = fin.read(buff))!= 0){
+                    out.write(buff,0,size);
+                }
+            }
+            else {
+                out.write("404 Not Found".getBytes());
+            }
+
         } catch (Exception e){
 
         }
