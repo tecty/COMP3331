@@ -1,8 +1,10 @@
+package com.tectygroup;
+
+
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.ServerSocket;
+import java.io.PrintStream;
 import java.net.Socket;
 
 public class ServerWorker implements Runnable {
@@ -11,21 +13,28 @@ public class ServerWorker implements Runnable {
 
     public ServerWorker(Socket client) {
         this.client = client;
-        http
     }
 
     @Override
     public void run() {
         try {
-            // get the in and output stream
-            InputStreamReader inputStreamReader = new InputStreamReader(client.getInputStream());
-            BufferedReader in = new BufferedReader(inputStreamReader);
-            OutputStream out = client.getOutputStream();
 
-            while (in.ready()) {
-                String line = in.readLine();
-                System.out.println(line);
+            OutputStream out = client.getOutputStream();
+            HttpRequest hr = new HttpRequest(client.getInputStream());
+
+//            System.out.println("GET: "+ hr.getUri());
+
+            PrintStream outprint = new PrintStream(out);
+//            outprint.println("200 OK\n\r\n\rhello world");
+
+            if (hr.getMethod() != HttpRequest.METHOD.GET){
+                // we only support the get mothod
+                this.client.close();
             }
+
+            HttpResponse hq = new HttpResponse(out,hr.getUri());
+
+            hq.response();
 
         } catch (Exception e) {
             // close the connection for any reason
