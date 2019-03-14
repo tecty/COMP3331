@@ -1,8 +1,6 @@
 package com.tectygroup;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.util.Date;
@@ -27,76 +25,72 @@ public class HttpResponse {
         // init the header map
         headers = new HashMap<>();
         // dummy headers
+        headers.put("Content-Type", "text/html; charset=utf-8");
         headers.put("Connection", "Keep-Alive");
-//        headers.put("Date")
-        headers.put("Content-Type", "text/html");
 
 
     }
     public String getStatusStr(){
         switch (this.status){
             case OK:
-                return "200 OK\n\r";
+                return "HTTP/1.1 200 OK\r\n";
             case NOT_FOUND:
-                return "404 NOT FOUND\n\r";
+                return "HTTP/1.1 404 NOT FOUND\r\n";
         }
-        return "200 OK\n\r";
+        return "HTTP/1.1 200 OK\r\n";
     }
 
-    public String getHeaderStr(){
-        String ret = "";
-        for (String key :
-                headers.keySet()) {
-            ret += key +": "+ headers.get(key)+"\n\r";
-        }
-        return ret;
-    }
+//    public String getHeaderStr(){
+//        String ret = "";
+//        for (String key :
+//                headers.keySet()) {
+//            ret += key +": "+ headers.get(key)+"\r\n";
+//        }
+//        return ret;
+//    }
 
     public String getHeader(){
-        String ret = "";
-        ret += getStatusStr();
-        ret += getHeaderStr();
-        ret += "\n\r";
-        return  ret;
+        return getStatusStr() +
+                "Content-Type: text/html; charset=utf-8\r\n" +
+                "Content-Length: "+headers.get("Content-Length")+"\r\n" +
+                "Connection: keep-alive\r\n" +
+                "Content-Language: en-US\r\n" +
+                "\r\n" ;
     }
 
     public void response(){
-        FileInputStream fin = null;
+        BufferedReader fin = null;
+        // we only support 8k for this version
+        String str = "";
+
         try {
-            fin =new FileInputStream(Paths.get(uri).toFile());
-        } catch (Exception e) {
-            e.printStackTrace();
-            // here must be a file not found error
+            fin =new BufferedReader(
+                    new FileReader(
+                            Paths.get(uri).toFile()
+                    )
+            );
+            String st;
+            while ((st= fin.readLine())!= null){
+                str += st;
+            }
+
+            headers.put(
+                "Content-Length",
+                Integer.toString(str.length())
+            );
+        }catch (Exception e){
             this.status = STATUS.NOT_FOUND;
         }
 
-        try {
-            // write the header part
-            System.out.println(this.getHeader());
-            this.out.write(this.getHeader().getBytes());
 
-            if (fin != null){
-                byte[] buff = new byte[8192];
-                int size = fin.read(buff) ;
-                do {
-                    // send all the file to remote
-                    this.out.write(buff,0, size);
-                    size = fin.read(buff);
-                }while( size > 0);
-            }
-            this.out.flush();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        str = getHeader() + str;
 
         try {
-            // close the steam
-            this.out.close();
+
+            out.write(str.getBytes());
         } catch (Exception e){
-            e.printStackTrace();
-        }
 
+        }
 
     }
 
