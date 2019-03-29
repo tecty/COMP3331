@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm} 
+\usepackage{amsfonts} 
+\usepackage{pdfpages}
+\usepackage{listings}
+\lstset{breaklines} 
+
+\begin{document}
+
+\title{COMP3331 Lab2}
+\author{Ruofei HUANG}
+
+\maketitle
+
+\section{Exercise 1}
+
+\subsection{Question 1}
+
+IP of gaia.cs.umass.edu: 128.119.245.12\\
+It's using port 80. \\ 
+Client is using IP:192.168.1.102 with port 1161\\
+
+\subsection{Question 2}
+
+Sequence number: 232129013
+
+\subsection{Question 3}
+
+First six segments are:\\
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Seq. No.& Sent time & Ack recv. Time & RTT (ms) & Estimated RTT (ms)\\
+    232129013 & 1093095860.596858000 & 1093095860.624318000 & 2.74598598480225 & 2.74598598480225 \\
+    232129578 & 1093095860.612118000 & 1093095860.647675000 & 3.55570316314697 & 2.84720063209534 \\
+    232131038 & 1093095860.624407000 & 1093095860.694466000 & 7.00590610504150 & 3.36703881621361 \\
+    232132498 & 1093095860.625071000 & 1093095860.739499000 & 11.4428043365479 & 4.37650950625539 \\
+    232133958 & 1093095860.647786000 & 1093095860.787680000 & 13.9894008636475 & 5.57812092592940 \\
+    232135418 & 1093095860.648538000 & 1093095860.838183000 & 18.9644813537598 & 7.25141597940819 \\
+    \hline
+\end{tabular}
+
+\subsection{Question 4}
+
+Length is 17520.
+
+\subsection{Question 5}
+
+The minimal buffer size of server is 6780.
+Yes it did. At the begin, the client send two segements at one time .
+But after the windowsize become larger, the client sent 5 package at once.
+
+\subsection{Question 6}
+
+No, there's not retransimit. I put 
+\begin{lstlisting}
+    tcp.analysis.retransmission or tcp.analysis.fast_retransmission
+\end{lstlisting}
+at the filter field.
+
+\subsection{Question 7}
+
+It's acking 1460 Byte of data. 
+
+The server didn't open the delay acking. So it ack for each package it received.
+Which means I didn't identify the cases the receiver is acking every other received segment 
+(delay acking).
+
+\subsection{Question 8}
+
+Start time: 0\\
+End time: 7.595557\\
+Start Seq: 232129012\\
+End Seq: 232293103\\
+Transfered Byte: 164091\\
+Throughput (Byte/Second): 21603.55\\
+Which is: 21.603 KB/s\\
+
+\section{Exercise 2}
+
+\subsection{Question 1}
+
+For server, it's initiate at 2818463618.
+
+\subsection{Question 2}
+
+It's 1247095790. The ack filed is 2818463619. 
+It's determined by the sequence number send from client as seq then ack as seq+1.
+
+\subsection{Question 3}
+
+Sequence number is 2818463619, Acknowlogement field of this ACK segment is 1247095791.
+No, this segment doesn't contain any data.
+
+\subsection{Question 4}
+
+The client do the activeclose. The client has ip 10.9.16.201 which sent the FIN segment first.
+No, this segment doesn't contain any data.
+
+\subsection{Question 5}
+
+From client to server:
+2818463652-
+2818463618-2 = 32
+\\
+From server to client: 
+1247095831-
+1247095790-2 =39
+
+It's final ack - initial seq. number - 2. The reson for -2 is the ack for SYN and FIN will 
++1 for the sequence numer, but those package doesn't have any data.
+
+\end{document}
