@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm} 
+\usepackage{amsfonts} 
+\usepackage{pdfpages}
+\usepackage{listings}
+\lstset{breaklines} 
+
+\begin{document}
+
+\title{COMP3331 Lab6}
+\author{Ruofei HUANG}
+
+\maketitle
+
+\section{Exercise 1}
+\subsection{Question 1}
+
+Node 0 and Node 2. \\
+Node 0 use: 0 - 1 - 4 - 5\\
+Node 2 use: 2 - 3 - 5 \\
+No, the route doesn't change over time.
+
+\subsection{Quesiton 2}
+
+The link 1 - 4 is down. No route between the communicating nodes changed. Hence some package from node 0 has lost.
+
+\subsection{Question 3}
+
+There's some additional traffic which is the router tell it's neighbour about it's distance vector. \\
+The router 1 re-route the traffic from node 0 when the link 1 - 4 is down to node 2. 
+
+\subsection{Question 4}
+
+It affect the traffic from node 0 instead of taking link 1 - 4 by taking link 1 - 2. Because this change increase the cost between 1 - 4 from 1 to 3. This will make the cost of 1 - 4 - 5 become 4 while 1 - 2 - 3 - 5 is only 3. So, it's cheaper to take the route 1 - 2 - 3 - 5 by the distance vector algorithm, even the other route has less link to pass.
+
+\subsection{Question 5}
+
+Result: The traffic from node 2 take two route : 2 - 1 - 4 - 5 and 2 - 3 - 5 \\
+Reason: The setting of multipath is true, and the node will use mutiple paths to any distination. After this setting, both 2 - 1 - 4 - 5 and 2 - 3 - 5 has same cost 4, so the node 2 chose two path to send it's traffic to node 5.
+
+\section{Exercise 2}
+
+\subsection{Question 1}
+
+
+
+
+
+\end{document}
