@@ -60,7 +60,29 @@ After node 0 or node 3 want to send more package, the node 2 will drop their pac
 
 \subsection{Question 1}
 
+2000 and 3500 because in default, each IP segment only can contain 1480 bytes of data, any package is larger than 1480 will be fragmented to small IP segment. \\
+By host 192.168.1.103.\\
+Two fragments.
 
+\subsection{Question 2}
 
+Yes it's fragmented. Because the reply of ping is echoing the input which means we will receive a 3500 datagram and need to be fragmented into small IP segment.
+
+\subsection{Question 3}
+
+\begin{tabular}{ l l l l }
+    ID & Length & Flag & offset \\
+    \hline
+    7a7b & 1514 & 0x2000, More fragments & 0 \\
+    7a7b & 1514 & 0x20b9, More fragments & 185 \\
+    7a7b & 582  & 0x0172 & 370\\
+\end{tabular}
+
+\section{Question 4}
+Yes. 3500 > 1480 which means the MTU is smaller than the data size.
+
+\section{Question 5}
+
+The retransmission will occour in TCP layer which means the whole TCP package will be retransmitted. So it will retransmit 3 IP fragments.
 
 \end{document}
