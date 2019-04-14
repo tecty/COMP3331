@@ -45,6 +45,20 @@ Reason: The setting of multipath is true, and the node will use mutiple paths to
 
 \subsection{Question 1}
 
+Because n3 has bigger bandwitdth in n2 (10Mbps) than n0 has in n2 (2.5Mbps). It's more less likely that n2 will drop the package from n3 since it has more package arrived in n2 is from n3. Hence, after adjustment between n3 and n5 (from 2s to 6s), the throughput of tcp2 is larger than tcp1. \\
+Also, there's less latency from n3 to n5 than n0 to n5, which lead to less fluctuation. And lead to more stable connection. 
+
+\subsection{Question 2}
+
+Because it takes time to receive the ack from 5 to 0. After sending a small amount of data (by the restriction of window size of tcp), there's no traffic in this link. 
+
+\subsection{Question 3}
+
+After node 0 or node 3 want to send more package, the node 2 will drop their package, which lead to their window size drop to 1 and start 'slow start'. There's a chance of TCP 1 to achieve a higher throughput, but the traffic of TCP2 comes in, and increase the package loss in TCP1 and leads to lower throughput in TCP 1. 
+
+\section{Exercise 3}
+
+\subsection{Question 1}
 
 
 
