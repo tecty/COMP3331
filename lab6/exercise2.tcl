@@ -33,7 +33,7 @@ proc finish {} {
 	#Execute nam on the trace file
     exec nam out.nam &
     # Execute gnuplot to display the two trace files tcp1.tr and tcp2.tr
-    #exec gnuplot throughput.plot &
+    exec gnuplot throughput.plot &
     exit 0
 }
 
@@ -154,8 +154,8 @@ proc record {} {
         puts $f1 "$now [expr $bw1/$time*8/1000000]"
         puts $f2 "$now [expr $bw2/$time*8/1000000]"
         #Reset the bytes_ values on the traffic sinks
-        set bw1 0
-        set bw2 0
+        $sink1 set bytes_ 0
+        $sink2 set bytes_ 0
 
         #Re-schedule the procedure
         $ns at [expr $now+$time] "record"
