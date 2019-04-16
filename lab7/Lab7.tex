@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm} 
+\usepackage{amsfonts} 
+\usepackage{pdfpages}
+\usepackage{listings}
+\lstset{breaklines} 
+
+\begin{document}
+
+\title{COMP3331 Lab7}
+\author{Ruofei HUANG}
+
+\maketitle
+
+\section{Exercise 1}
+
+\subsection{Question 1}
+Subnet Table:\\
+\begin{tabular}{l l l}
+    Subnet&Number&Netmask\\
+    \hline
+    Subnet 1& 10.1.1.0 & 255.255.255.0\\
+    Subnet 2& 10.1.2.0 & 255.255.255.0\\
+    Subnet 3& 10.1.0.0 & 255.255.0.0\\
+\end{tabular}\\
+Interface Table:\\
+\begin{tabular}{l r}
+    Interface & Ip Address\\
+    \hline
+    H1    & 10.1.1.2 \\
+    H2    & 10.1.1.3 \\
+    H3    & 10.1.2.2 \\
+    H4    & 10.1.2.3 \\
+    R1a   & 10.1.1.1 \\
+    R1b   & 10.1.0.2 \\
+    R1c   & 10.1.2.1 \\
+    NAT-i & 10.1.0.1 \\
+\end{tabular}
+
+\subsection{Question 2}
+
+Since the IPv6 will use 128-bit of address, it can count more than all the sand on earth. 
+Hence, it's impossible to run out of the address space in forseeable future. The NAT machnism
+is dealing with the address is not enough in IPv4. So if every device can be directly addressed
+by IPv6 in public network, there's no need to setup an NAT device in subnet.
+
+\subsection{Question 3}
+
+It's tedious to remember the IPv6 address and difficult to type into address bar without 
+any error.
+
+\subsection{Question 4}
+
+HTTP as an example: \\
+There's some IP address and port number inside UDP segment. If NAT leave it as what it is,
+orthers may not find the correct address because it's belong to subnet and need to translate.
+In this case, if NAT doesn't do the support, all the application base on this protocal wont
+work.
+
+\section{Exercise 2}
+
+\subsection{Question 1}
+
+192.168.1.100
+
+\subsection{Question 2}
+
+Source 192.168.1.100:4335\\
+Destination  64.233.169.104:80
+
+\subsection{Question 3}
+
+At 7.158797
+
+\subsection{Question 4}
+
+At 7.075657
+
+\subsection{Question 5}
+
+Source: 54.233.169.104:80
+Destination: 192.168.1100:4335
+At 7.108986 
+
+
+\end{document}
