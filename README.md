@@ -1,1 +1,13 @@
 # COMP3331
+
+You can view all the question and the answer given by myself. Please don't directly copy those answers. Futhermore,you should be aware of some answers are incorrect and list down below.
+
+| Lab | Mark | Comment                                                                                                                                                                                                                              |
+| --- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | 9.25 | (E3-Q1) you should have reported the number unsw routers-(E3-Q3) You did not provide answer for "If you observe common routers between the forward and the reverse path, do you also observe the same IP addresses? Why or why not?" |
+| 2   | 9.25 | E3-Q4: 73 bytes of HTML data, E3-Q2: last modified on Tuesday, 23rd September 2003 at 05:35                                                                                                                                          |
+| 3   | 8.25 | E3-Q4 Wrong DNS Server, E3-Q8: When we try with the ANU nameservers we do not get a response. Webserver does not return 404                                                                                                          |
+| 4   | 8.00 | E1-Q4: Wrong, E1:Q8: Wrong, E2-Q4: Wrong                                                                                                                                                                                             |
+| 5   | 9.00 | Q2 Wrong                                                                                                                                                                                                                             |
+| 6   | 9.00 | E2Q2: Wrong,Q5: Wrong                                                                                                                                                                                                                |
+| 7   | 9.00 | E1Q1: Wrong,                                                                                                                                                                                                                         |
